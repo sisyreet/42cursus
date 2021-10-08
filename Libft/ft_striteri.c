@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 15:16:46 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 16:21:55 by sisyreet         ###   ########.fr       */
+/*   Created: 2021/10/08 16:27:00 by sisyreet          #+#    #+#             */
+/*   Updated: 2021/10/08 16:34:12 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *str);
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char			*str;
 	unsigned int	i;
-	int				c;
 
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	i = 1;
-	c = 0;
-	while (s[c] != '\0')
+	i = 0;
+	while (s[i] != '\0')
 	{
-		str[c] = (*f)(c, s[c]);
-		c++;
+		(*f)(i, &s[i]);
+		i++;
 	}
-	str[c] = 0;
-	return (str);
 }

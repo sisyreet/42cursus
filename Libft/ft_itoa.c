@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 13:50:12 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 15:12:07 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/08 17:00:55 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;
-	int		i;
 	int		sign;
 
 	sign = minus(n);
@@ -51,7 +50,6 @@ char	*ft_itoa(int n)
 	{
 		len--;
 		str[len] = n % 10 + '0';
-		printf("%c__", str[len]);
 		n = n / 10;
 	}
 	if (sign == 1)

@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 15:16:46 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 16:21:55 by sisyreet         ###   ########.fr       */
+/*   Created: 2021/10/08 16:49:20 by sisyreet          #+#    #+#             */
+/*   Updated: 2021/10/08 17:33:41 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
 size_t	ft_strlen(const char *str);
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_putendl_fd(char *s, int fd)
 {
-	char			*str;
-	unsigned int	i;
-	int				c;
-
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	i = 1;
-	c = 0;
-	while (s[c] != '\0')
+	if (s)
 	{
-		str[c] = (*f)(c, s[c]);
-		c++;
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
 	}
-	str[c] = 0;
-	return (str);
 }
