@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:37:16 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/07 17:37:17 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/08 18:28:59 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	j = 0;
 	while (i < start)
 		i++;
-	str = (char *) malloc(len);
+	str = (char *)malloc(len);
 	if (str == NULL)
 		return (NULL);
 	while (len > j)

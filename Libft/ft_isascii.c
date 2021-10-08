@@ -6,13 +6,13 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:07:28 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/06 14:07:29 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/08 18:07:33 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	if (c > 0 && c <= 127)
+	if (c >= 0 && c <= 127)
 		return (1);
 	return (0);
 }

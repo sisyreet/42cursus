@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:07:04 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/06 14:07:10 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/08 18:29:49 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	ft_atoi(char *nptr)
 	minus = 1;
 	while ((nptr[i] > 8 && nptr[i] < 14) || (nptr[i] == 32))
 		i++;
-	if (nptr[i] == '-')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		minus = 1 * (-1);
+		if (nptr[i] == '-')
+			minus = 1 * (-1);
 		i++;
 	}
 	if (!(nptr[i] > 47 && nptr[i] < 58))

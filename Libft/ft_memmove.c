@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:51:52 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/06 18:01:18 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/08 18:02:28 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	char *dst_1;
 	char *src_1;
 
+	if (dst == 0 && src == 0)
+		return (0);
 	dst_1 = (char *)dst;
 	src_1 = (char *)src;
 	s = 0;

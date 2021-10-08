@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:51:52 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/06 18:14:32 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/08 17:49:43 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 	char *dst_1;
 	char *src_1;
 
+	if (dst == 0 && src == 0)
+		return (0);
 	dst_1 = (char *)dst;
 	src_1 = (char *)src;
 	s = 0;
