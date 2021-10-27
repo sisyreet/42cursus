@@ -6,13 +6,13 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 13:50:12 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 17:00:55 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:32:41 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
+
+char	*ft_strdup(const char *s1);
 
 int	intsize(int num)
 {
@@ -40,9 +40,15 @@ char	*ft_itoa(int n)
 	int		len;
 	int		sign;
 
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
 	sign = minus(n);
 	len = intsize(n) + sign;
 	str = (char *)malloc(len);
+	if (!str)
+		return (0);
 	str[--len] = 0;
 	if (n < 0)
 		n = -n;

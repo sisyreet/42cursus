@@ -6,31 +6,45 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:51:52 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 18:02:28 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:34:25 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
+
+char	*ne_vlezlo(char *dst, char *src, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < (int)len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	return (dst);
+}
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	s;
-	size_t	d;
-	char *dst_1;
-	char *src_1;
+	int		i;
+	char	*dst_1;
+	char	*src_1;
 
 	if (dst == 0 && src == 0)
 		return (0);
 	dst_1 = (char *)dst;
 	src_1 = (char *)src;
-	s = 0;
-	d = 0;
-	while (s < len)
+	if (src < dst)
 	{
-		dst_1[d] = src_1[s];
-		d++;
-		s++;
+		i = (int)len - 1;
+		while (i >= 0)
+		{
+			dst_1[i] = src_1[i];
+			i--;
+		}
 	}
+	else
+		ne_vlezlo(dst_1, src_1, len);
 	return ((void *)dst_1);
 }
- 

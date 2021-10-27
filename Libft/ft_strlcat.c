@@ -6,35 +6,36 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:09:47 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/06 19:22:06 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:33:19 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlen(const char *str);
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	d;
 	size_t	s;
-	size_t	counter;
+	size_t	d;
+	size_t	d_size;
+	size_t	s_size;
 
 	s = 0;
-	counter = 0;
-	while (src[s] != '\0')
+	d_size = ft_strlen(dst);
+	s_size = ft_strlen(src);
+	d = d_size;
+	if (d_size < size - 1 && size > 0)
 	{
-		s++;
-		counter++;
+		while (src[s] && d_size + s < size - 1)
+		{
+			dst[d] = src[s];
+			d++;
+			s++;
+		}
+		dst[d] = 0;
 	}
-	if (dstsize < counter)
-		return (0);
-	s = 0;
-	d = 0;
-	while (src[s] != '\0')
-	{
-		dst[d] = src[s];
-		d++;
-		s++;
-	}
-	dst[d] = '\0';
-	return (counter);
+	if (d_size >= size)
+		d_size = size;
+	return (d_size + s_size);
 }

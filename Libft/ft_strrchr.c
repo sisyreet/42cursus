@@ -6,23 +6,22 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 19:25:31 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 18:15:05 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:29:41 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strrchr(const char *str, int ch)
 {
-	int	s;
+	int	i;
 
-	s = 0;
-	while (str[s] != '\0')
-		s++;
-	s--;
-	while (str[s] != '\0')
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	while (i >= 0)
 	{
-		if (str[s] == ch)
-			return ((char *) &str[s]);
-		s--;
+		if (str[i] == (char) ch)
+			return ((char *) &str[i]);
+		i--;
 	}
 	return (0);
 }

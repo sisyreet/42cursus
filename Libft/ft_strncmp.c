@@ -6,27 +6,33 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:31:53 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/07 12:29:42 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:33:32 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	c;
+	int				c;
+	unsigned char	*ss1;
+	unsigned char	*ss2;
 
+	ss1 = (unsigned char *)s1;
+	ss2 = (unsigned char *)s2;
 	c = 0;
 	while (n > 0)
 	{
-		if ((s2[c] != '\0') && (s1[c] == '\0'))
-			return (s1[c] - s2[c]);
-		if ((s2[c] == '\0') && (s1[c] != '\0'))
-			return (s1[c] + s2[c]);
-		if (s1[c] > s2[c])
-			return (1);
-		if (s1[c] < s2[c])
-			return (-1);
+		if ((ss2[c] == '\0') && (ss1[c] == '\0'))
+			return (0);
+		if ((ss2[c] != '\0') && (ss1[c] == '\0'))
+			return (ss1[c] - ss2[c]);
+		if ((ss2[c] == '\0') && (ss1[c] != '\0'))
+			return (ss1[c] + ss2[c]);
+		if (ss1[c] > ss2[c])
+			return ((ss2[c] - ss1[c]) * (-1));
+		if (ss1[c] < ss2[c])
+			return (ss1[c] - ss2[c]);
 		n--;
 		c++;
 	}

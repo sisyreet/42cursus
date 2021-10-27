@@ -6,11 +6,24 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:52:56 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 12:27:27 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:33:06 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
+
+void	ft_free(char **arr, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{	
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 int	count_words(char *str, char c)
 {
@@ -19,14 +32,14 @@ int	count_words(char *str, char c)
 
 	i = 0;
 	count = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		while (str[i] != '\0' && str[i] == c)
+		while (str[i] && str[i] == c)
 			i++;
-		if (str[i] != '\0' && str[i] != c)
+		if (str[i] && str[i] != c)
 		{
 			count++;
-			while (str[i] != '\0' && str[i] != c)
+			while (str[i] && str[i] != c)
 				i++;
 		}
 	}
@@ -39,17 +52,48 @@ char	*malloc_word(char *str, char c)
 	int		i;
 
 	i = 0;
-	while (str[i] != '\0' && str[i] != c)
+	while (str[i] && str[i] != c)
 		i++;
 	word = (char *)malloc(sizeof(char) * (i + 1));
+	if (!word)
+		return (0);
 	i = 0;
-	while (str[i] != '\0' && str[i] != c)
+	while (str[i] && str[i] != c)
 	{
 		word[i] = str[i];
 		i++;
 	}
-	word[i] = '\0';
+	word[i] = 0;
 	return (word);
+}
+
+int	splitter(char *str, char c, char **arr)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		while (str[i] && str[i] == c)
+			i++;
+		if (str[i] && str[i] != c)
+		{
+			arr[j] = malloc_word((char *)&str[i], c);
+			if (!arr[j])
+			{				
+				ft_free(arr, j);
+				free(arr);
+				return (1);
+			}
+			j++;
+			while (str[i] && str[i] != c)
+				i++;
+		}
+	}
+	arr[j] = 0;
+	return (0);
 }
 
 char	**ft_split(char const *str, char c)
@@ -60,19 +104,15 @@ char	**ft_split(char const *str, char c)
 
 	i = 0;
 	j = 0;
+	if (!str)
+		return (0);
 	arr = (char **)malloc(sizeof(char *) * (count_words((char *)str, c) + 1));
-	while (str[i])
+	if (!arr)
+		return (0);
+	if (splitter((char *)str, c, arr))
 	{
-		while (str[i] != '\0' && str[i] == c)
-			i++;
-		if (str[i] != '\0' && str[i] != c)
-		{
-			arr[j] = malloc_word((char *)&str[i], c);
-			j++;
-			while (str[i] != '\0' && str[i] != c)
-				i++;
-		}
+		free(arr);
+		return (0);
 	}
-	arr[i] = NULL;
 	return (arr);
 }

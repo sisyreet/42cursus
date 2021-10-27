@@ -6,11 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:16:46 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/08 16:21:55 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:33:29 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *str);
 
@@ -20,7 +20,11 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	int				c;
 
+	if (!s)
+		return (0);
 	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (0);
 	i = 1;
 	c = 0;
 	while (s[c] != '\0')

@@ -6,13 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:30:58 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/07 19:43:12 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:33:43 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *str);
 
@@ -33,24 +31,24 @@ int	prefcmp(char c, char *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*sum;
-	char	*str;
-	char	*pset;
-	int		s;
-	int		g;
+	int		begin;
+	int		end;
+	int		i;
 
-	str = (char *)s1;
-	pset = (char *)set;
-	s = 0;
-	g = 0;
-	sum = (char *)malloc(ft_strlen(s1));
-	while (prefcmp(str[s], pset) == 1)
-		s++;
-	while (prefcmp(str[s], pset) == 0)
-	{
-		sum[g] = str[s];
-		s++;
-		g++;
-	}
-	sum[g] = '\0';
+	begin = 0;
+	i = 0;
+	if (!s1)
+		return (0);
+	while (prefcmp(s1[begin], (char *)set) && s1[begin])
+		begin++;
+	end = ft_strlen(s1);
+	while (end > begin && prefcmp(s1[end - 1], (char *)set))
+		end--;
+	sum = (char *)malloc(end - begin + 1);
+	if (!sum)
+		return (0);
+	while (begin < end)
+		sum[i++] = s1[begin++];
+	sum[i] = '\0';
 	return (sum);
 }

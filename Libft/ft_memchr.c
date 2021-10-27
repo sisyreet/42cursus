@@ -6,30 +6,28 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 12:32:46 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/07 12:44:44 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:30:42 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		q;
-	char	*str;
+	size_t			q;
+	unsigned char	d;
+	unsigned char	*str;
 
-	str = (char *)s;
+	str = (unsigned char *)s;
+	d = (unsigned char)c;
 	q = 0;
-	if (str[q] == 0)
-		return ((char *) &str[q]);
-	while (n > 0)
+	while (q < n)
 	{
-		if (c == str[q])
+		if (d == str[q])
 		{
-			return ((char *) &str[q]);
+			return ((void *)&str[q]);
 		}
 		q++;
-		n--;
 	}
-	return ((void *) NULL);
+	return (NULL);
 }
