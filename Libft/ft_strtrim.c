@@ -6,13 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:30:58 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/27 16:33:43 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/11/08 14:58:21 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlen(const char *str);
 
 int	prefcmp(char c, char *set)
 {
@@ -49,6 +47,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (0);
 	while (begin < end)
 		sum[i++] = s1[begin++];
-	sum[i] = '\0';
+	sum[i] = 0;
 	return (sum);
 }

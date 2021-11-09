@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:37:16 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/27 18:47:22 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/11/08 15:02:32 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (0);
 	while (len > j)
 		str[j++] = s[i++];
-	str[j] = '\0';
+	str[j] = 0;
 	return (str);
 }

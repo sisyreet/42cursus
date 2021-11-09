@@ -6,13 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 13:50:12 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/27 16:32:41 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/11/08 19:06:26 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char	*ft_strdup(const char *s1);
 
 int	intsize(int num)
 {

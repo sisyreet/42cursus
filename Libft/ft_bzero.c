@@ -6,13 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 16:49:46 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/10/27 16:32:31 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/11/08 17:47:18 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_memset(void *b, int c, size_t len);
 
 void	ft_bzero(void *s, size_t n)
 {
