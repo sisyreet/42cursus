@@ -6,12 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:00:50 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/12/02 16:00:54 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/12/06 10:49:53 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {

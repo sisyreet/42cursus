@@ -6,13 +6,13 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:24:34 by sisyreet          #+#    #+#             */
-/*   Updated: 2021/12/03 12:40:47 by sisyreet         ###   ########.fr       */
+/*   Updated: 2021/12/06 10:15:27 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFFER_SIZE 3
+//# define BUFFER_SIZE 3
 
 # include <unistd.h>
 # include <stdlib.h>
