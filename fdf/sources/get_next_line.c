@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:23:26 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/10 10:50:37 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/21 10:24:03 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,9 @@ static char	*get_str_before_nl(char *saved)
 	char	*truncated;
 
 	s = 0;
-	while (saved[s])
-	{
+	while (saved[s++])
 		if (saved[s] == '\n')
 			break ;
-		s++;
-	}
 	s--;
 	truncated = (char *)malloc(sizeof(char) * s + 2);
 	if (!truncated)

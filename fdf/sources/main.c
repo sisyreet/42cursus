@@ -5,76 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 17:18:34 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/11 14:50:22 by sisyreet         ###   ########.fr       */
+/*   Created: 2022/01/12 15:20:30 by sisyreet          #+#    #+#             */
+/*   Updated: 2022/01/21 15:22:46 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_point	*fill_points(char *argv, t_point *coordinates, int x, int y)
+int	key_hook(int key, t_data *data)
 {
-	int		fd;
-	int		i;
-	int		j;
-	int		c;
-	char	**line;
-
-	coordinates = malloc(sizeof(t_point) * (x * y));
-	fd = open(argv, O_RDONLY);
-	i = 0;
-	c = 0;
-	while (i < y)
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	if (key == 53)
+		exit(0);
+	if (key == 69)
+		data->zoom += 15;
+	if (key == 78)
 	{
-		j = 0;
-		line = ft_split(get_next_line(fd), ' ');
-		while (line[j])
-		{
-			coordinates[c].x = j;
-			coordinates[c].y = i;
-			coordinates[c].z = ft_atoi(line[j]);
-			j++;
-			c++;
-		}
-		i++;
+		if (data->zoom > 15)
+			data->zoom -= 15;
 	}
-	close(fd);
-	return (coordinates);
+	if (key == 123)
+		data->shift_x += 75;
+	if (key == 124)
+		data->shift_x -= 75;
+	if (key == 125)
+		data->shift_y -= 75;
+	if (key == 126)
+		data->shift_y += 75;
+	draw(data, data->points);
+	return (0);
 }
 
-t_map	get_map_size(int fd)
+void	errormsg(char *msg)
 {
-	char	buffer;
-	char	**temp;
-	int		count;
-	int		i;
-	t_map	size;
-
-	temp = ft_split(get_next_line(fd), ' ');
-	count = 0;
-	i = 0;
-	while (temp[i++])
-		count++;
-	size.x = count;
-	count = 0;
-	while (get_next_line(fd))
-		count++;
-	size.y = count + 1;
-	return (size);
+	write(1, msg, ft_strlen(msg));
+	write(1, "\n", 1);
+	exit(17);
 }
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	t_map	map_size;
-	t_point	*coordinates;
+	t_data	*data;
+	t_dot	screen;
 
-	if (argc != 2)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	map_size = get_map_size(fd);
-	coordinates = fill_points(argv[1], coordinates, map_size.x, map_size.y);
-	draw_something(coordinates, map_size);
-	close(fd);
+	if (argc == 2)
+	{
+		data = (t_data *)malloc(sizeof(data));
+		screen.x = 2400;
+		screen.y = 1300;
+		get_map(data, argv[1]);
+		data->mlx_ptr = mlx_init();
+		data->win_ptr = mlx_new_window(data->mlx_ptr, screen.x, \
+															screen.y, "FdF");
+		data->color = 0x03fc07;
+		data->zoom = 30;
+		data->shift_x = screen.x / 2;
+		data->shift_y = -10;
+		draw(data, data->points);
+		mlx_key_hook(data->win_ptr, key_hook, data);
+		mlx_loop(data->mlx_ptr);
+	}
+	else
+		errormsg("Wrong number of arguments!");
 	return (0);
 }

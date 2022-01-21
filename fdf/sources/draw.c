@@ -5,45 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 12:04:33 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/11 11:52:29 by sisyreet         ###   ########.fr       */
+/*   Created: 2022/01/12 16:54:19 by sisyreet          #+#    #+#             */
+/*   Updated: 2022/01/21 15:20:20 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	key_hook(int key, void *param)
+int	sy_max(int a, int b)
 {
-	if (key == 53)
-		exit(0);
-	return (0);
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }
 
-void	draw_something(t_point *points, t_map map_size)
+int	sy_mod(int a)
 {
-	void	*mlx_ptr;	
-	void	*win_prt;
-	int		p;
-	int		y;
-	int		x;
+	if (a < 0)
+		return (-a);
+	else
+		return (a);
+}
+
+void	line(t_dot start, t_dot end, t_data *data)
+{
+	float	dx;
+	float	dy;
+	int		max;
+
+	get_zoom(&start, &end, data);
+	isometric(&start, &end, start.alt, end.alt);
+	change_shift(&start, &end, data);
+	dx = end.x - start.x;
+	dy = end.y - start.y;
+	max = sy_max(sy_mod(dx), sy_mod(dy));
+	dx /= max;
+	dy /= max;
+	if (start.alt < end.alt)
+		start.color = end.color;
+	while ((int)(start.x - end.x) || (int)(start.y - end.y))
+	{
+		mlx_pixel_put(data->mlx_ptr, data->win_ptr, start.x, \
+													start.y, start.color);
+		start.x += dx;
+		start.y += dy;
+	}
+}
+
+void	draw(t_data *data, t_dot **points)
+{
+	int	x;
+	int	y;
 
 	y = 0;
-	p = 0;
-	x = 20;
-	y = 20;
-	mlx_ptr = mlx_init();
-	win_prt = mlx_new_window(mlx_ptr, 1024, 768, "Test RuN");
-	while (p < (map_size.x * map_size.y))
+	while (y < data->height)
 	{
-		if (points[p].y > points[p - 1].y)
-			y += 20;
-		if (points[p].x < points[p - 1].x)
-			x = 20;
-		mlx_pixel_put(mlx_ptr, win_prt, x, y, 0xFFFFFF);
-		x += 20;
-		p++;
+		x = 0;
+		while (x < data->width)
+		{
+			if (x < data->width - 1)
+				line(points[y][x], points[y][x + 1], data);
+			if (y < data->height - 1)
+				line(points[y][x], points[y + 1][x], data);
+			x++;
+		}
+		y++;
 	}
-	mlx_string_put(mlx_ptr, win_prt, 0, 0, 0xDDDDDD, "Hello!");
-	mlx_key_hook(win_prt, key_hook, (void *)0);
-	mlx_loop(mlx_ptr);
 }
+			// if (y < data->height - 1 && x < data->width - 1)
+			// 	line(points[y][x], points[y + 1][x + 1], data);
+			// if (y > 0 && x < data->width - 1)
+			// 	line(points[y][x], points[y - 1][x + 1], data);
