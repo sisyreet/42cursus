@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:54:19 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/21 15:45:13 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:41:42 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,10 @@ void	draw(t_data *data, t_dot **points)
 				line(points[y][x], points[y][x + 1], data);
 			if (y < data->height - 1)
 				line(points[y][x], points[y + 1][x], data);
+			if (y < data->height - 1 && x < data->width - 1)
+				line(points[y][x], points[y + 1][x + 1], data);
 			x++;
 		}
 		y++;
 	}
 }
-			// if (y < data->height - 1 && x < data->width - 1)
-			// 	line(points[y][x], points[y + 1][x + 1], data);
-			// if (y > 0 && x < data->width - 1)
-			// 	line(points[y][x], points[y - 1][x + 1], data);

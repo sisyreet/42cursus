@@ -6,33 +6,63 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:07:26 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/21 15:14:20 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:28:47 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	get_map_height_and_width(char *argv, t_data *data)
+void	get_map_height(char *argv, t_data *data)
 {
 	int		i;
+	int		j;
 	int		fd;
-	char	**line;
+	char	*temp;
 
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 		errormsg("File read error!");
 	i = 0;
-	while (get_next_line(fd))
+	j = 0;
+	while (fd)
+	{
+		temp = get_next_line(fd);
+		if (!temp)
+			break ;
+		free(temp);
 		i++;
+	}
+	if (i < 2)
+		errormsg("Incorrect data!");
 	close(fd);
 	data->height = i;
+}
+
+void	get_map_width(char *argv, t_data *data)
+{
+	int		i;
+	int		fd;
+	int		sum;
+	char	**line;
+	char	*temp;
+
 	fd = open(argv, O_RDONLY);
-	line = ft_split(get_next_line(fd), ' ');
-	if (line == NULL)
-		errormsg("Bad map file!");
-	i = 0;
-	while (line[i])
-		i++;
+	sum = 0;
+	while (fd)
+	{
+		temp = get_next_line(fd);
+		if (!temp)
+			break ;
+		line = ft_split(temp, ' ');
+		i = 0;
+		while (line[i])
+			i++;
+		sum += i;
+		free(temp);
+		ft_free(line, i);
+	}
+	if (sum / data->height != i)
+		errormsg("Incorrect data!");
 	data->width = i;
 	close(fd);
 }
@@ -44,7 +74,7 @@ int	hex_to_dec(char *hex, long long decimal)
 
 	base = 1;
 	i = ft_strlen(hex);
-	while (i-- >= 0)
+	while (i >= 0)
 	{
 		if (hex[i] >= '0' && hex[i] <= '9')
 		{
@@ -61,37 +91,9 @@ int	hex_to_dec(char *hex, long long decimal)
 			decimal += (hex[i] - 87) * base;
 			base *= 16;
 		}
+		i--;
 	}
 	return (decimal);
-}
-
-void	set_alt_and_color(t_dot *zets, char *alt)
-{
-	zets->alt = ft_atoi(alt);
-	if (zets->alt > -20)
-		zets->color = 0xa213bf;
-	if (zets->alt > -9)
-		zets->color = 0xae63ff;
-	if (zets->alt > -7)
-		zets->color = 0x636bff;
-	if (zets->alt > -5)
-		zets->color = 0x63aeff;
-	if (zets->alt > -3)
-		zets->color = 0x63e2ff;
-	if (zets->alt > -1)
-		zets->color = 0x66fadc;
-	if (zets->alt == 0)
-		zets->color = 0xa2f2af;
-	if (zets->alt > 1)
-		zets->color = 0xbdf2a2;
-	if (zets->alt > 3)
-		zets->color = 0xf9ff8c;
-	if (zets->alt > 5)
-		zets->color = 0xffdd8c;
-	if (zets->alt > 7)
-		zets->color = 0xffb88c;
-	if (zets->alt > 9)
-		zets->color = 0xfa6666;
 }
 
 void	fill_points(t_dot *zets, char *line, int y)
@@ -113,29 +115,39 @@ void	fill_points(t_dot *zets, char *line, int y)
 			alt_and_color = ft_split(temp[x], ',');
 			zets[x].alt = ft_atoi(alt_and_color[0]);
 			zets[x].color = hex_to_dec(alt_and_color[1], decimal);
+			ft_free(alt_and_color, 2);
 		}
 		zets[x].y = y;
 		zets[x].x = x;
 		x++;
 	}
+	ft_free(temp, x);
 }
 
 void	get_map(t_data *data, char *argv)
 {
-	int	i;
-	int	fd;
-	int	y;
+	int		i;
+	int		fd;
+	int		y;
+	char	*line;
 
-	get_map_height_and_width(argv, data);
-	data->points = (t_dot **)malloc(sizeof(t_dot *) * (data->height) + 1);
+	get_map_height(argv, data);
+	get_map_width(argv, data);
+	data->points = (t_dot **)malloc(sizeof(t_dot *) * (data->height + 1));
 	i = 0;
 	while (i <= data->height)
-		data->points[i++] = (t_dot *)malloc(sizeof(t_dot) * (data->width) + 1);
+	{
+		data->points[i] = (t_dot *)malloc(sizeof(t_dot) * (data->width + 1));
+		i++;
+	}
 	fd = open(argv, O_RDONLY);
 	i = 0;
 	y = i;
 	while (i < data->height)
-		fill_points(data->points[i++], get_next_line(fd), y++);
+	{
+		line = get_next_line(fd);
+		fill_points(data->points[i++], line, y++);
+		free(line);
+	}
 	close (fd);
-	data->points[i] = NULL;
 }

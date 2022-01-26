@@ -6,11 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:52:56 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/21 10:23:55 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:59:03 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	ft_free(char **arr, int n)
 {
@@ -54,7 +54,7 @@ char	*malloc_word(char *str, char c)
 	i = 0;
 	while (str[i] && str[i] != c)
 		i++;
-	if (str[i - 2] == ' ')
+	if (str[i - 1] == c)
 		i -= 1;
 	word = (char *)malloc(sizeof(char) * (i + 1));
 	if (!word)
@@ -115,6 +115,6 @@ char	**ft_split(char const *str, char c)
 	{
 		free(arr);
 		return (0);
-	}	
+	}
 	return (arr);
 }

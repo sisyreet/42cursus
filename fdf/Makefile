@@ -1,10 +1,10 @@
 NAME			= fdf
 SRCS			= sources/draw.c	\
-				sources/ft_atoi.c	\
-				sources/ft_split.c	\
+				includes/ft_atoi.c	\
+				includes/ft_split.c	\
 				sources/get_map.c		\
-				sources/get_next_line.c	\
-				sources/get_next_line_utils.c	\
+				includes/get_next_line.c	\
+				includes/get_next_line_utils.c	\
 				sources/main.c	\
 				sources/utils.c	
 
@@ -13,9 +13,9 @@ HEADER			= includes/fdf.h
 
 OBJS 			= $(SRCS:.c=.o)
 
-CC				= gcc
+CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I$(HEADER)
+CFLAGS			= -Wall -Wextra -Werror -g 
 DRAW_FLAGS		= -lmlx -framework OpenGL -framework AppKit
 
 .PHONY:			all clean fclean re

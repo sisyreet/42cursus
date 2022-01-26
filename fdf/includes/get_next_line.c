@@ -6,11 +6,11 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:23:26 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/21 10:24:03 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/24 14:52:20 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 int	has_nl(char *saved)
 {
