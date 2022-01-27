@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:54:10 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 17:09:39 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:28:48 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,6 @@ void	change_shift(t_dot *start, t_dot *end, t_data *data)
 	start->y += data->shift_y;
 	end->x += data->shift_x;
 	end->y += data->shift_y;
-}
-
-void	get_zoom(t_dot *a, t_dot *b, t_data *data)
-{
-		a->x *= data->zoom;
-		a->y *= data->zoom;
-		a->alt *= (data->zoom / 10);
-		b->x *= data->zoom;
-		b->y *= data->zoom;
-		b->alt *= (data->zoom / 10);
 }
 
 void	isometric(t_dot *start, t_dot *end, int z, int z1)

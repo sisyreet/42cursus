@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 10:39:25 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 16:37:49 by sisyreet         ###   ########.fr       */
+/*   Created: 2022/01/27 13:50:58 by sisyreet          #+#    #+#             */
+/*   Updated: 2022/01/27 16:18:12 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 # define BUFFER_SIZE 100
+# define BG_COLOR	0x000000
 
 # include "mlx.h"
 # include <fcntl.h>
@@ -43,6 +44,12 @@ typedef struct s_data
 	void	*win_ptr;
 	int		scr_x;
 	int		scr_y;
+
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_data;
 
 char	**ft_split(char const *str, char c);
@@ -58,7 +65,11 @@ void	change_shift(t_dot *a, t_dot *b, t_data *data);
 void	isometric(t_dot *start, t_dot *end, int z, int z1);
 int		errormsg(char *msg);
 void	ft_free(char **arr, int n);
-int		hex_to_dec(char *hex, long long decimal);
+void	init_img(t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	*ft_memset(void *b, int c, size_t len);
 void	points_free(t_data *data);
+int		key_hook(int key, t_data *data);
+int		hex_to_dec(char *hex, long long decimal);
 
 #endif	

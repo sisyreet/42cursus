@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:20:30 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 16:38:26 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:34:05 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-
-int	key_hook(int key, t_data *data)
-{
-	if (key == 53)
-	{
-		points_free(data);
-		exit(0);
-	}
-	return (0);
-}
+#include "../includes/fdf_bonus.h"
 
 void	points_free(t_data *data)
 {
@@ -54,10 +44,8 @@ int	main(int argc, char **argv)
 		data->scr_x = 2400;
 		data->scr_y = 1020;
 		get_map(data, argv[1]);
-		data->mlx_ptr = mlx_init();
-		data->win_ptr = mlx_new_window(data->mlx_ptr, data->scr_x, \
-															data->scr_y, "fdf");
-		data->zoom = 10;
+		init_img(data);
+		data->zoom = 30;
 		data->shift_x = data->scr_x / 2;
 		data->shift_y = 0;
 		draw(data, data->points);
