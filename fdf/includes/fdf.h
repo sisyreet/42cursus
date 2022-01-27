@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 10:39:25 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/26 12:27:41 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/27 10:49:31 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <stdio.h>
 
 typedef struct s_dot
 {
@@ -38,6 +39,8 @@ typedef struct s_data
 	int		shift_x;
 	int		shift_y;
 
+	int		scr_x;
+	int		scr_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_data;

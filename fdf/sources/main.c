@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:20:30 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/26 12:53:23 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/27 10:46:30 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,24 @@ void	errormsg(char *msg)
 {
 	write(1, msg, ft_strlen(msg));
 	write(1, "\n", 1);
-	exit(17);
+	exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	t_dot	screen;
 
 	if (argc == 2)
 	{
 		data = (t_data *)malloc(sizeof(t_data));
-		screen.x = 2400;
-		screen.y = 1020;
+		data->scr_x = 800;
+		data->scr_y = 600;
 		get_map(data, argv[1]);
 		data->mlx_ptr = mlx_init();
-		data->win_ptr = mlx_new_window(data->mlx_ptr, screen.x, \
-															screen.y, "fdf");
+		data->win_ptr = mlx_new_window(data->mlx_ptr, data->scr_x, \
+															data->scr_y, "fdf");
 		data->zoom = 30;
-		data->shift_x = screen.x / 2;
+		data->shift_x = data->scr_x / 2;
 		data->shift_y = 0;
 		draw(data, data->points);
 		mlx_key_hook(data->win_ptr, key_hook, data);

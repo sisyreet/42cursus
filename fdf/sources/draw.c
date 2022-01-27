@@ -6,26 +6,21 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:54:19 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/24 12:41:42 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/27 10:47:17 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	sy_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
-int	sy_mod(int a)
+int	sy_max(float a, float b)
 {
 	if (a < 0)
-		return (-a);
-	else
+		a = -a;
+	if (b < 0)
+		b = -b;
+	if (a > b)
 		return (a);
+	return (b);
 }
 
 void	line(t_dot start, t_dot end, t_data *data)
@@ -39,7 +34,7 @@ void	line(t_dot start, t_dot end, t_data *data)
 	change_shift(&start, &end, data);
 	dx = end.x - start.x;
 	dy = end.y - start.y;
-	max = sy_max(sy_mod(dx), sy_mod(dy));
+	max = sy_max(dx, dy);
 	dx /= max;
 	dy /= max;
 	if (start.alt < end.alt)
