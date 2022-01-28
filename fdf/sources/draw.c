@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:54:19 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 16:31:09 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/28 09:56:22 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	line(t_dot start, t_dot end, t_data *data)
 		start.color = end.color;
 	while ((int)(start.x - end.x) || (int)(start.y - end.y))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, start.x, \
-													start.y, start.color);
+		if ((int)start.x < data->scr_x && (int)start.y < data->scr_y
+			&& (int)start.x >= 0 && (int)start.y >= 0)
+			ft_mlx_pixel_put(data, start.x, start.y, start.color);
 		start.x += dx;
 		start.y += dy;
 	}
@@ -54,6 +55,8 @@ void	draw(t_data *data, t_dot **points)
 	int	y;
 
 	y = 0;
+	ft_memset((int *)(data)->addr, BG_COLOR, \
+						data->scr_x * data->scr_y * (data->bits_per_pixel / 8));
 	while (y < data->height)
 	{
 		x = 0;
@@ -69,4 +72,5 @@ void	draw(t_data *data, t_dot **points)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }

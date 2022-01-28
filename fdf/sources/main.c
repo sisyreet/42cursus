@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:20:30 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 16:38:26 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/28 09:49:33 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ int	main(int argc, char **argv)
 		data->scr_x = 2400;
 		data->scr_y = 1020;
 		get_map(data, argv[1]);
-		data->mlx_ptr = mlx_init();
-		data->win_ptr = mlx_new_window(data->mlx_ptr, data->scr_x, \
-															data->scr_y, "fdf");
-		data->zoom = 10;
+		init_img(data);
+		data->zoom = 30;
 		data->shift_x = data->scr_x / 2;
 		data->shift_y = 0;
 		draw(data, data->points);

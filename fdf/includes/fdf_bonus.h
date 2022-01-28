@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:50:58 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 16:18:12 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/28 09:56:37 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	isometric(t_dot *start, t_dot *end, int z, int z1);
 int		errormsg(char *msg);
 void	ft_free(char **arr, int n);
 void	init_img(t_data *data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	*ft_memset(void *b, int c, size_t len);
 void	points_free(t_data *data);
 int		key_hook(int key, t_data *data);

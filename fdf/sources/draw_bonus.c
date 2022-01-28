@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:54:19 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 15:10:04 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/28 09:56:43 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	line(t_dot start, t_dot end, t_data *data)
 	{
 		if ((int)start.x < data->scr_x && (int)start.y < data->scr_y
 			&& (int)start.x >= 0 && (int)start.y >= 0)
-			my_mlx_pixel_put(data, start.x, start.y, start.color);
+			ft_mlx_pixel_put(data, start.x, start.y, start.color);
 		start.x += dx;
 		start.y += dy;
 	}

@@ -2,10 +2,12 @@ NAME			= fdf
 
 SRCS			= includes/ft_atoi.c	\
 				includes/ft_split.c	\
+				includes/ft_memset.c \
 				includes/get_next_line.c	\
 				includes/get_next_line_utils.c	\
 				sources/draw.c	\
 				sources/get_map.c		\
+				sources/init.c	\
 				sources/main.c	\
 				sources/utils.c	
 

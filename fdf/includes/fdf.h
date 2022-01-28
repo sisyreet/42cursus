@@ -6,13 +6,14 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 10:39:25 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 16:37:49 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/01/28 09:56:33 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define BUFFER_SIZE 100
+# define BG_COLOR	0x000000
 
 # include "mlx.h"
 # include <fcntl.h>
@@ -43,6 +44,12 @@ typedef struct s_data
 	void	*win_ptr;
 	int		scr_x;
 	int		scr_y;
+
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_data;
 
 char	**ft_split(char const *str, char c);
@@ -56,6 +63,9 @@ void	get_zoom(t_dot *a, t_dot *b, t_data *data);
 void	set_alt_and_color(t_dot *zets, char *alt);
 void	change_shift(t_dot *a, t_dot *b, t_data *data);
 void	isometric(t_dot *start, t_dot *end, int z, int z1);
+void	*ft_memset(void *b, int c, size_t len);
+void	init_img(t_data *data);
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		errormsg(char *msg);
 void	ft_free(char **arr, int n);
 int		hex_to_dec(char *hex, long long decimal);
