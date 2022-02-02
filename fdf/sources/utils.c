@@ -6,7 +6,7 @@
 /*   By: sisyreet <sisyreet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:54:10 by sisyreet          #+#    #+#             */
-/*   Updated: 2022/01/27 17:09:39 by sisyreet         ###   ########.fr       */
+/*   Updated: 2022/02/02 10:18:24 by sisyreet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	get_zoom(t_dot *a, t_dot *b, t_data *data)
 {
 		a->x *= data->zoom;
 		a->y *= data->zoom;
-		a->alt *= (data->zoom / 10);
+		a->alt *= (data->zoom / 15);
 		b->x *= data->zoom;
 		b->y *= data->zoom;
-		b->alt *= (data->zoom / 10);
+		b->alt *= (data->zoom / 15);
 }
 
 void	isometric(t_dot *start, t_dot *end, int z, int z1)
