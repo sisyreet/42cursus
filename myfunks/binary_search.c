@@ -4,22 +4,22 @@
 
 void	binary_search(int *arr, int length, int item)
 {
-	int	low;
-	int	high;
-	int	mid;
-	int	guess;
 	int	count;
+	int	guess;
+	int	high;
+	int	low;
+	int	mid;
 
-	low = 0;
-	high = length - 1;
 	count = 0;
+	high = length - 1;
+	low = 0;
 	while (low <= high)
 	{
 		count++;
 		mid = (low + high) / 2;
 		guess = arr[mid];
 		if (guess == item)
-			break;
+			break ;
 		if (guess > item)
 			high = mid - 1;
 		else
@@ -30,10 +30,10 @@ void	binary_search(int *arr, int length, int item)
 
 int	main(void)
 {
-	int	*array;
-	long long length;
-	int	i;
-	int	num;
+	long long	length;
+	long long	num;
+	int			*array;
+	int			i;
 
 	printf("Type number of elements in array:\n");
 	scanf("%lld", &length);
@@ -55,6 +55,11 @@ int	main(void)
 		i++; 
 	}
 	printf("Type number and I'll find it very quickly:\n");
-	scanf("%d", &num);
+	scanf("%lld", &num);
+	if (num > 2147483647 || num < 0)
+	{
+		printf("Incorrect number, try number between 0 and 2147483647!\n");
+		exit(-1);
+	}
 	binary_search(array, (int)length, num);
 }
