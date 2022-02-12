@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int	binary_search(int *arr, int length, int item)
+void	binary_search(int *arr, int length, int item)
 {
 	int	low;
 	int	high;
-	int mid;
-	int guess;
-	int count;
+	int	mid;
+	int	guess;
+	int	count;
 
 	low = 0;
 	high = length - 1;
@@ -26,23 +26,26 @@ int	binary_search(int *arr, int length, int item)
 			low = mid + 1;
 	}
 	printf("\nYour number is %d and I found it for %d iterations\n", guess, count);
-	return (mid);
 }
 
-int main(void)
+int	main(void)
 {
 	int	*array;
 	long long length;
 	int	i;
 	int	num;
 
-	printf("Type quantity of elements in array:\n");
+	printf("Type number of elements in array:\n");
 	scanf("%lld", &length);
-
+	if (length > 2147483647 || length < 0)
+	{
+		printf("Incorrect size of array, try number between 0 and 2147483647!\n");
+		exit(-1);
+	}
 	array = (int *)malloc(sizeof(int) * length);
 	if (!array)
 	{
-		printf("This array too large!\n");
+		printf("This size of array is too large! Try lesser size.\n");
 		exit(-1);
 	}
 	i = 0;
@@ -53,5 +56,5 @@ int main(void)
 	}
 	printf("Type number and I'll find it very quickly:\n");
 	scanf("%d", &num);
-	binary_search(array, length, num);
+	binary_search(array, (int)length, num);
 }
